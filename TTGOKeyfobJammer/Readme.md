@@ -5,3 +5,5 @@ i included the libary's i use for my Paxcounter TTGO where i put on this sketch 
 have fun !
 
 i use Arduino IDE to upload this code !
+
+https://www.youtube.com/watch?v=xBB10ocg0Qc
