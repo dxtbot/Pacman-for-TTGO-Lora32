@@ -15,7 +15,7 @@ its setup for 433.9100 EU standard for keyfobs ,
 ( also depent on the module you own. There are different models using different operating freq 433/868/915Mhz ) 
 for this project i used the 433 Mhz version.
 
-!!! WARNING DO NOT PUT THIS IN YOUR OWN CAR AND DO NOT FORGET TO TURN IT OFF !!
+!!! WARNING DO NOT PUT THIS IN YOUR OWN CAR ,AND DO NOT FORGET TO TURN IT OFF !!
 
 !! THIS DEVICE COULD BE ILEGAL IN YOUR COUNTRY AND RESULT IN PRISON !!
 
