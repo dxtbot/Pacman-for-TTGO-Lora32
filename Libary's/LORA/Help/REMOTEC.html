@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>LoRa shield</title>
+  <link rel="shortcut icon" type="image/x-icon" href="http://arduino.cc/en/favicon.png">
+  <link rel='stylesheet' href='arduinoWideRender.css' 
+type='text/css' />
+    <!--HeaderText--><style type='text/css'><!--
+  ul, ol, pre, dl, p { margin-top:0px; margin-bottom:0px; }
+  code { white-space: nowrap; }
+  .vspace { margin-top:1.33em; }
+  .indent { margin-left:40px; }
+  .outdent { margin-left:40px; text-indent:-40px; }
+  a.createlinktext { text-decoration:none; border-bottom:1px dotted gray; }
+  a.createlink { text-decoration:none; position:relative; top:-0.5em;
+    font-weight:bold; font-size:smaller; border-bottom:none; }
+  img { border:0px; }
+  .editconflict { color:green; 
+  font-style:italic; margin-top:1.33em; margin-bottom:1.33em; }
+
+  table.markup { border: 2px dotted #ccf; width:90%; }
+  td.markup1, td.markup2 { padding-left:10px; padding-right:10px; }
+  td.markup1 { border-bottom: 1px solid #ccf; }
+  div.faq { margin-left:2em; }
+  div.faq p.question { margin: 1em 0 0.75em -2em; font-weight:bold; }
+  div.faq hr { margin-left: -2em; }
+   
+    .frame 
+      { border:1px solid #cccccc; padding:4px; background-color:#f9f9f9; }
+    .lfloat { float:left; margin-right:0.5em; }
+    .rfloat { float:right; margin-left:0.5em; }
+a.varlink { text-decoration:none; }
+
+--></style>  <meta name='robots' content='index,follow' />
+
+  <meta name="verify-v1" content="TtxFIEJAB6zdJ509wLxjnapQzKAMNm9u0Wj4ho6wxIY=" />
+</head>
+<body>
+<div id="page">
+  <!--PageHeaderFmt-->
+  <div id="pageheader">
+    <div class="title"><a href='http://arduino.cc/en'>Arduino</a></div>
+  </div>
+  <!--/PageHeaderFmt-->
+
+  <!--PageLeftFmt-->
+  <div id="pagenav">
+    <div id="navbar">
+  	<p><a class='wikilink' href='http://arduino.cc/en/Main/Buy'>Buy</a>
+<a class='wikilink' href='http://arduino.cc/en/Main/Software'>Download</a>
+<a class='wikilink' href='http://arduino.cc/en/Guide/HomePage'>Getting Started</a>
+<a class='wikilink' href='http://arduino.cc/en/Tutorial/HomePage'>Learning</a>
+<a class='wikilink' href='http://arduino.cc/en/Reference/HomePage'>Reference</a>
+<a class='wikilink' href='http://arduino.cc/en/Main/Hardware'>Hardware</a>
+<a class='wikilink' href='http://arduino.cc/en/Main/FAQ.html'>FAQ</a>
+</p>
+<p class='vspace'></p>
+
+    </div>
+  </div>
+  <!--/PageLeftFmt-->
+
+  <div id="pagetext">
+  <!--PageText-->
+<div id='wikitext'>
+<p>&nbsp;</p>
+<h2>REMOTEC  Class</h2>
+<p class='vspace'></p><table >
+  <tr><td  width='55%' valign='top'>
+<p class='vspace'></p>
+<p>
+This class lets you use SX1278 as transmitter for radiocontrolled power socket (like Avidsen or Welleman systems). That is, systems that use HX2262-HX2272 protocol.</p>
+<p>In this case the SX1278 is in OOK mode.</p>
+<p>  
+</p>  
+
+
+<p>&nbsp;</p>
+<a name="begin"></a>
+Initialize shield as radiocontrol (Avidsen or Velleman) Set default power to 10dBm (code 2).<br />
+<strong>bool begin();</strong>
+<p>&nbsp;</p>
+<a name="mode"></a>  
+Ready to transmit commands<br />
+<strong>void setTransmitMode(); </strong>
+<p>&nbsp;</p>
+<a name="avid"></a>
+<p>Send command (on/off) to Avidsen socket </p>
+<p>address byte value=0/1/2(open) </p>
+<p>sock=1/2/3/4/5 </p>
+<p>on/off=1/0 <br />
+  <strong>void avidsenSet(byte address[5],byte socket, byte onoff); </strong>
+</p>
+<p>&nbsp;</p>
+<a name="vell"></a>
+<p>Send command (on/off) to Velleman socket</p>
+<p>address byte value=0/1/2(open)  </p>
+<p>sock=1/2/3 </p>
+<p>on/off=1/0<br />
+  <strong>void vellemanSet(byte address[7],byte socket, byte onoff);</strong>
+</p>
+<p>&nbsp;</p>
+Functions to implement an impulses receiver (but you have to use Arduino pin D3)
+Set SX1278 in "continuous" mode. I.E. no processing is performed and impulses can be received on pin 3 Impulses can be received and decoded by scanImpulses() function.<br />
+boolean setScannerMode();<br />
+Receive impulses. If nothing is arrived it returns 0. You can put this function in Arduino loop function. If impulses are coming they are showed and decoded.<br />
+int scanImpulses();<br />
+More details in REMOTEC.h file.
+   
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>You can use SX1278 basic functions with prefix SX, because SX1278 class is referenced by external name SX.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td><td  width='10%' valign='top'>
+<p class='vspace'></p></td><td  width='35%' valign='top'>
+<p class='vspace'></p>
+<h4><a class='wikilink' href='LoRaShield.html'>Index</a></h4>
+<h4>Functions</h4>
+<ul>
+<li><a class='wikilink' href='#begin'>begin</a></li>
+<li><a class='wikilink' href='#mode'>setTransmitMode</a></li>
+<li><a class='wikilink' href='#avid'>avidsenSet</a></li>
+<li><a class='wikilink' href='#vell'>vellemanSet</a></li>
+</ul>
+<p class='vspace'></p><h4>Examples</h4>
+<ul>
+  <li><a class='wikilink' href='../examples/Other/NoLoRa-OOK/RemPwr/RemPwr.ino'>OOK Remote Power Control</a></li>
+  <li><a class='wikilink' href='../examples/Other/NoLoRa-OOK/RemPwrScanner/RemPwrScanner.ino'>OOK Remote Scanner</a></li>
+</ul>
+</td></tr></table>
+<p><a class='wikilink' href='http://arduino.cc/en/Reference/HomePage'>Reference Home</a>
+</p>
+</div>
+
+
+  </div>
+
+  <!--PageFooterFmt-->
+  <div id="pagefooter">
+&copy;Arduino | 
+  <a href='#'>Edit Page</a> | <a href='#'>Page History</a> | <a href='#' target='_blank'>Printable View</a> | <a href='http://arduino.cc/en/Site/AllRecentChanges'>All Recent Site Changes</a>
+  </div>
+  <!--/PageFooterFmt-->
+
+</div>
+</body>
+</html>

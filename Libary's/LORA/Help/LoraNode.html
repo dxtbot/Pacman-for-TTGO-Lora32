@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>LoRa shield</title>
+  <link rel="shortcut icon" type="image/x-icon" href="http://arduino.cc/en/favicon.png">
+  <link rel='stylesheet' href='arduinoWideRender.css' 
+type='text/css' />
+    <!--HeaderText--><style type='text/css'><!--
+  ul, ol, pre, dl, p { margin-top:0px; margin-bottom:0px; }
+  code { white-space: nowrap; }
+  .vspace { margin-top:1.33em; }
+  .indent { margin-left:40px; }
+  .outdent { margin-left:40px; text-indent:-40px; }
+  a.createlinktext { text-decoration:none; border-bottom:1px dotted gray; }
+  a.createlink { text-decoration:none; position:relative; top:-0.5em;
+    font-weight:bold; font-size:smaller; border-bottom:none; }
+  img { border:0px; }
+  .editconflict { color:green; 
+  font-style:italic; margin-top:1.33em; margin-bottom:1.33em; }
+
+  table.markup { border: 2px dotted #ccf; width:90%; }
+  td.markup1, td.markup2 { padding-left:10px; padding-right:10px; }
+  td.markup1 { border-bottom: 1px solid #ccf; }
+  div.faq { margin-left:2em; }
+  div.faq p.question { margin: 1em 0 0.75em -2em; font-weight:bold; }
+  div.faq hr { margin-left: -2em; }
+   
+    .frame 
+      { border:1px solid #cccccc; padding:4px; background-color:#f9f9f9; }
+    .lfloat { float:left; margin-right:0.5em; }
+    .rfloat { float:right; margin-left:0.5em; }
+a.varlink { text-decoration:none; }
+
+--></style>  <meta name='robots' content='index,follow' />
+
+  <meta name="verify-v1" content="TtxFIEJAB6zdJ509wLxjnapQzKAMNm9u0Wj4ho6wxIY=" />
+</head>
+<body>
+<div id="page">
+  <!--PageHeaderFmt-->
+  <div id="pageheader">
+    <div class="title"><a href='http://arduino.cc/en'>Arduino</a></div>
+  </div>
+  <!--/PageHeaderFmt-->
+
+  <!--PageLeftFmt-->
+  <div id="pagenav">
+    <div id="navbar">
+  	<p><a class='wikilink' href='http://arduino.cc/en/Main/Buy'>Buy</a>
+<a class='wikilink' href='http://arduino.cc/en/Main/Software'>Download</a>
+<a class='wikilink' href='http://arduino.cc/en/Guide/HomePage'>Getting Started</a>
+<a class='wikilink' href='http://arduino.cc/en/Tutorial/HomePage'>Learning</a>
+<a class='wikilink' href='http://arduino.cc/en/Reference/HomePage'>Reference</a>
+<a class='wikilink' href='http://arduino.cc/en/Main/Hardware'>Hardware</a>
+<a class='wikilink' href='http://arduino.cc/en/Main/FAQ.html'>FAQ</a>
+</p>
+<p class='vspace'></p>
+
+    </div>
+  </div>
+  <!--/PageLeftFmt-->
+
+  <div id="pagetext">
+  <!--PageText-->
+<div id='wikitext'>
+<a name="intro"></a>
+<p>&nbsp;</p>
+<h2>LoraNode  Class</h2>
+<p class='vspace'></p><table >
+  <tr><td  width='55%' valign='top'>
+<p class='vspace'></p>
+<p>
+LORA class contains simplified functions to create and use a node in a network using LoRa protocol. </p>
+<p>&nbsp;</p>
+<p>This class uses some default setting. So in teory you have to  set just the identification of node (i.e. its address inside the network).</p>
+<p>Default setting uses max 15 nodes (with each address from 1 to 15). But you can change this number of possible nodes from 7 to 8191 (see LORA page about network definition).</p>
+<p>Transmission is crypted and a default key is provided. You can change it, but, obviously, you have to use same key for each node. </p>
+<p>A random marker (one byte) is added to each message for user further applications.</p>
+<p>Sending  and receiving message can work with an automatic aknowledge (i.e. receiving/sending back 2 chars &quot;AK&quot;). This feature is off for default. </p>
+<p>Sending message uses a  &quot;air busy&quot; control, before sending. This control has a user defined time out and consists of a radio module function that verifies the presence of a transmission on the channel (channel: frequence, spreading factor, band width).</p>
+<p>&nbsp;</p>
+<a name="begin"></a>
+<h3>Define a node (instance)</h3>
+<h2>LoraNode()</h2>
+<h4>Format</h4>
+<p><strong>LoraNode()</strong> : uses node address 1</p>
+<p><strong>LoraNode(int nodeadd)</strong> : set address "nodead" as node id</p>
+<h3>Start radio module</h3>
+<h2>begin()</h2>
+<h4>Format</h4>
+<p><strong>bool begin()</strong> : if can't start module returns "false"</p>
+<h3>Write a message to a node</h3>
+<h2>writeMessage()</h2>
+<h4>Format</h4>
+<p><strong>bool writeMessage(int dest,char* message,int timeout)</strong> : send "message" to node "dest" and can wait for air free "timeout" milliseconds maximum; it returns false if wasn't able to send message.
+</p>
+<h3>Check if message is arrived </h3>
+<h2>newMessAvailable()</h2>
+<h4>Format</h4>
+<p><strong>bool newMessAvailable(int timeout)</strong> : check for "timeout" millisecons if message is incoming.
+</p>
+<p><strong>bool newMessAvailable(int sender,int timeout)</strong> : check for "timeout" millisecons if message is incoming, but only message from a specific "sender".
+</p>
+<p style="color:#F00">NB This method uses default char buffer that is 64 bytes long. If you use longer messages you need to change default length of buffer using changeMessageBufferLen(int len) function (see setting functions).</p>
+<h3>Get decrypted text of arrived message</h3>
+<h2>getMessage()</h2>
+<h4>Format</h4>
+<p><strong>char* getMessage()</strong> : returns last text arrived.
+</p>
+<h3>Get sender of last message</h3>
+<h2>getSender()</h2>
+<h4>Format</h4>
+<p><strong>int getSender()</strong> : returns address (node id) of last message.
+</p>
+<h3>Get marker of last message</h3>
+<h2>getMarker()</h2>
+<h4>Format</h4>
+<p><strong>int getMarker()</strong> : returns random byte used in last sent or received message.
+</p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p></td><td  width='10%' valign='top'>
+<p class='vspace'></p></td><td  width='35%' valign='top'>
+<p class='vspace'></p>
+<h4><a class='wikilink' href='LoRaShield.html'>Index</a></h4>
+<h4>Functions</h4>
+<ul>
+<li><a class='wikilink' href='#intro'>Introduction</a></li>
+<li><a class='wikilink' href='#begin'>Starting functions</a></li>
+<li><a class='wikilink' href='LoraNodeDef.html'>Setting functions</a></li>
+<li><a class='wikilink' href='LoraNodeBinExpansion.html'>Binary expansion</a></li>
+</ul>
+<p class='vspace'></p><h4>Examples</h4>
+<ul>
+ <li><a class='wikilink' href='../examples/BasicNode/BasicNode/BasicNode.ino'>BasicNode</a></li>
+ <li><a class='wikilink' href='../examples/BasicNode/PollingServer/PollingServer.ino'>Polling Server</a></li>
+ <li><a class='wikilink' href='../examples/BasicNode/PolledDev/PolledDev.ino'>Polled Device</a></li></ul>
+<p>&nbsp;</p>
+<p>Additional examples are included in library</p>
+</td></tr></table>
+<p><a class='wikilink' href='http://arduino.cc/en/Reference/HomePage'>Reference Home</a>
+</p>
+</div>
+
+
+  </div>
+
+  <!--PageFooterFmt-->
+  <div id="pagefooter">
+&copy;Arduino | 
+  <a href='#'>Edit Page</a> | <a href='#'>Page History</a> | <a href='#' target='_blank'>Printable View</a> | <a href='http://arduino.cc/en/Site/AllRecentChanges'>All Recent Site Changes</a>
+  </div>
+  <!--/PageFooterFmt-->
+
+</div>
+</body>
+</html>
